@@ -2,7 +2,7 @@
     "name": "Social-Network-API",
     "version": "1.0.0",
     "description": "API backend Social Media",
-    "main": "index.js",
+    "main": "server.js",
     "license": "MIT",
     "scripts": {
         "start": "node index",
