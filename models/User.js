@@ -19,8 +19,29 @@ const userSchema = new Schema(
                 },
                 message: props => `${props.value} is not a valid email`
             },
-        }
-    }
+        },
+        thoughts: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: "thought",
+            },
+        ],
+        friends: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: "user",
+            },
+        ],
+    },
+    {
+        toJSON: {
+            getters: true,
+        },
+        id: false,
+    });
+
+
+module.exports = User;
 
 
 
@@ -28,6 +49,3 @@ const userSchema = new Schema(
 
 
 
-
-
-)
