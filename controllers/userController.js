@@ -1,5 +1,5 @@
-
-
+const { ObjectId } = require('mongoose').Types;
+const { User, Thought } = require('../models');
 
 
 // /api/users Get all users
