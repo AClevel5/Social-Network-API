@@ -8,7 +8,7 @@ connection.once('open', async () => {
     console.log('connected');
 
     await User.deleteMany({});
-    await Thought.deleteMany({});
+    // await Thought.deleteMany({});
 
     const users = [];
 
