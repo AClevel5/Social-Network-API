@@ -27,6 +27,7 @@ const names = [
     'Cassie',
 ];
 
+
 const randomThoughts = [
     'Inside the mind of every person that knows you is a uniquely different version of yourself.',
     'Every hollow chocolate bunny is carrying a pocket of air from somewhere else in the world.',
