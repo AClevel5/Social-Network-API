@@ -45,6 +45,10 @@ const randomThoughts = [
     'If magic was real, it would just be a branch of science.',
 ];
 
+// const randomReaction = [
+
+// ]
+
 const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
 const getRandomName = () =>
@@ -55,6 +59,7 @@ const getRandomThoughts = (int) => {
     for (let i = 0; i < int; i++) {
         results.push({
             thoughtText: getRandomArrItem(randomThoughts),
+
         });
     }
     return results;

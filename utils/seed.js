@@ -7,7 +7,7 @@ connection.on('error', (err) => err);
 connection.once('open', async () => {
     console.log('connected');
 
-    await User.deleteMany({});
+    // await User.deleteMany({});
     await Thought.deleteMany({});
 
     const users = [];
@@ -25,7 +25,23 @@ connection.once('open', async () => {
 
         });
     }
-    await User.collection.insertMany(users);
+    // await User.collection.insertMany(users);
+
+    for (user of users) {
+        const randThought = getRandomThoughts(2);
+
+        thoughts.push({
+            userName: user.userName,
+            createdAt: null,
+            thoughtText: randThought,
+            reactions: 
+
+
+        });
+        console.log(user.userName);
+        
+    }
+
 
 
 
