@@ -40,13 +40,35 @@ module.exports = {
     },
 
     //Put to update a thought by its _id
+    updateThought(req, res) {
+        Thought.findOneAndUpdate(
+            { _id: req.params.thoughtId },
+            { $set: req.body },
+            { runValidators: true, new: true }
+        )
+            .then((thought) =>
+                !thought
+                    ? res.status(404).json({ message: 'No thought with this id!' })
+                    : res.json(thought)
+            )
+            .catch((err) => res.status(500).json(err));
+    },
 
     //Delete to remove a thought by its _id
+    deleteThought(req, res) {
+        Thought.findOneAndDelete({ _id: req.params.thoughtId })
+            .then((thought) =>
+                !thought
+                    ? res.status(404).json({ message: 'No thought with that ID' })
+                    : res.json(thought)
+            )
+            .catch((err) => res.status(500).json(err));
+    },
+
 
     //api/thoughts/:thoughtId/reactions POST to create a reaction stored in a single thought's reactions array field
 
     ///api/thoughts/:thoughtId/reactions/:reactionId DELETE to pull and remove a reaction by the reaction's reactionId value
 
-
-
 };
+
