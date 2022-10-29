@@ -8,14 +8,16 @@ connection.once('open', async () => {
     console.log('connected');
 
     await User.deleteMany({});
-    // await Thought.deleteMany({});
+    await Thought.deleteMany({});
 
     const users = [];
+    const thoughts = [];
 
     for (let i = 0; i < 20; i++) {
         const userName = getRandomName();
+        const randNumb = Math.floor(Math.random() * 1000);
         const first = userName.split(' ')[0];
-        const email = `${first}@gmail.com`;
+        const email = `${first}${randNumb}@gmail.com`;
 
         users.push({
             userName,
@@ -24,6 +26,8 @@ connection.once('open', async () => {
         });
     }
     await User.collection.insertMany(users);
+
+
 
     console.table(users);
     console.info('Seeding complete! 🌱');
