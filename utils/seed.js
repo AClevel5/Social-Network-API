@@ -7,7 +7,7 @@ connection.on('error', (err) => err);
 connection.once('open', async () => {
     console.log('connected');
 
-    // await User.deleteMany({});
+    await User.deleteMany({});
     await Thought.deleteMany({});
 
     const users = [];
@@ -25,27 +25,27 @@ connection.once('open', async () => {
 
         });
     }
-    // await User.collection.insertMany(users);
+    await User.collection.insertMany(users);
+
 
     for (user of users) {
-        const randThought = getRandomThoughts(2);
+        const randThought = getRandomThoughts(1);
+        const thoughtText = randThought[0].thoughtText;
+        const userName = user.userName;
 
         thoughts.push({
-            userName: user.userName,
-            createdAt: null,
-            thoughtText: randThought,
-            reactions: 
-
-
+            userName,
+            thoughtText
         });
-        console.log(user.userName);
-        
+
+
     }
 
-
+    await Thought.collection.insertMany(thoughts);
 
 
     console.table(users);
+    console.table(thoughts);
     console.info('Seeding complete! 🌱');
     process.exit(0);
 });
