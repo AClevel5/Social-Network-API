@@ -12,7 +12,7 @@ module.exports = {
 
     //Get to get a single thought by its _id
     getSingleThought(req, res) {
-        Thought.findOne({ _id: req.params.userId })
+        Thought.findOne({ _id: req.params.thoughtId })
             .select('-__v')
             .then((thought) =>
                 !thought
@@ -33,8 +33,8 @@ module.exports = {
             })
             .then((user) =>
                 !user
-                    ? res.status(404).json({ message: 'Thought Created without User' })
-                    : res.json("Thought Created")
+                    ? res.status(200).json({ message: 'Thought Created' })
+                    : res.json("Thought Created without User")
             )
             .catch((err) => res.status(500).json(err));
     },
@@ -67,9 +67,16 @@ module.exports = {
 
     //api/thoughts/:thoughtId/reactions POST to create a reaction stored in a single thought's reactions array field
     createReaction(req, res) {
-        Thought.findOneAndUpdate(
-            { _id: req.params.thoughtId },
-            { $set: req.body },
+        Thought.findByIdAndUpdate(
+            ObjectId(req.params.thoughtId),
+            {
+                $addToSet: {
+                    reactions: {
+                        reactionBody: req.body.reactionBody,
+                        userName: req.body.userName,
+                    },
+                },
+            },
             { runValidators: true, new: true }
         )
             .then((thought) =>

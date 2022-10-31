@@ -13,7 +13,11 @@ const reactionSchema = new Schema(
         },
         userName: {
             type: String,
-            default: Date.now,
+            required: true
+        },
+        createdAt: {
+            type: Date,
+            default: Date.now
             //need format
         }
     },
