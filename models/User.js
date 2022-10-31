@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-
+//User Model
 const userSchema = new Schema(
     {
         userName: {
